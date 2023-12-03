@@ -1,0 +1,1 @@
+This directory will temporarily hold currently logged in wallet's files.
