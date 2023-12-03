@@ -8,3 +8,5 @@
 ![Screenshot](screenshots//receive.png)
 <br>
 ![Screenshot](screenshots//settings.png)
+<br>
+![Screenshot](screenshots//settings_2.png)
