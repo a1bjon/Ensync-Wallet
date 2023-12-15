@@ -9,6 +9,9 @@ import java.util.Collections;
 
 public final class Hasher {
 
+    // PRIVATE ACCESS CONSTRUCTOR
+    private Hasher(){}
+
     /**
      * Generates a 32 character cryptographically secure salt.
      * @return Cryptographically secure salt.

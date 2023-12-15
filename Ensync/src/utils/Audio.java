@@ -7,6 +7,9 @@ import java.io.IOException;
 
 public final class Audio {
 
+    // PRIVATE ACCESS CONSTRUCTOR
+    private Audio(){}
+
     /**
      * Plays .WAV audio file.
      * @param path Path to .WAV audio file.
