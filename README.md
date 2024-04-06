@@ -6,8 +6,6 @@ in 1 application.
 <br>
 ![Screenshot](screenshots//dashboard.png)
 <br>
-![Screenshot](screenshots//dashboard_2.png)
-<br>
 ![Screenshot](screenshots//send.png)
 <br>
 ![Screenshot](screenshots//receive.png)
