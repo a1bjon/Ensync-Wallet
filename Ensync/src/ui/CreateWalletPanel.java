@@ -242,7 +242,7 @@ public class CreateWalletPanel extends JPanel{
         boolean successful = false;
         String salt = Hasher.generateSalt();
         try{
-            String msg = "Downloading and syncing blockchain.\nThis may take a while.";
+            String msg = "Downloading and syncing blockchain.\nThis may take a while.\nSelect OK to start wallet generation.";
             JOptionPane.showMessageDialog(null, msg, "Generating Wallet", JOptionPane.PLAIN_MESSAGE);
             if(this.wm.createWallet(walletName, Hasher.hashString(walletPass + salt), salt)){
                 successful = true;

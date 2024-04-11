@@ -31,7 +31,7 @@ public final class WalletManager{
     private Bitcoin bitcoin;
 
     // NETWORK
-    private final String network = "main";
+    private final String network = "test";
 
     /**
      * Constructs a WalletManager object.

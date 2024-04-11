@@ -1,5 +1,7 @@
 package entities;
 
+import java.util.Arrays;
+
 public final class WalletEntity {
 
     // WALLET NAME
@@ -97,5 +99,19 @@ public final class WalletEntity {
      */
     public byte[] getChainBytes(){
         return this.chainBytes;
+    }
+
+    /**
+     * Returns human-readable string of a Wallet Entity object.
+     * @return String representing a Wallet Entity object.
+     */
+    @Override
+    public String toString(){
+        return "WalletEntity{" +
+                "wallet = '" + this.wallet + "', " +
+                "password = '" + this.password + "', " +
+                "salt = '" + this.salt + "', " +
+                "walletBytes = '" + Arrays.toString(this.walletBytes) + "', " +
+                "chainBytes = '" + Arrays.toString(this.chainBytes) + "'}";
     }
 }
