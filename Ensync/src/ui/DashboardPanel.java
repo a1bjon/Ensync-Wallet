@@ -9,11 +9,12 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -233,12 +234,21 @@ public class DashboardPanel extends JPanel {
             Thread t = new Thread(() -> {
                 while(true){
                     try {
-                        URL url = new URL("https://www.binance.com/api/v3/ticker/price?symbol=" + this.currentPair);
-                        JSONObject json = (JSONObject) new JSONParser().parse(IOUtils.toString(url, StandardCharsets.UTF_8));
+                        // Get request from binance api endpoint
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .GET()
+                                .uri(URI.create("https://www.binance.com/api/v3/ticker/price?symbol=" + this.currentPair))
+                                .build();
+
+                        // Response
+                        HttpResponse<String> response = HttpClient.newHttpClient()
+                                .send(request, HttpResponse.BodyHandlers.ofString());
+
+                        JSONObject json = (JSONObject) new JSONParser().parse(response.body());
                         // Parse float to remove extra zeros.
                         bitcoinPriceLabel.setText(validPairs.get(this.currentPair) + Float.parseFloat((String) json.get("price")));
                     }
-                    catch(IOException | ParseException e) {
+                    catch(IOException | ParseException | IllegalStateException | InterruptedException e) {
                         // If endpoint url malformed or no json.
                         bitcoinPriceLabel.setText("Error");
                     }
@@ -320,13 +330,22 @@ public class DashboardPanel extends JPanel {
             Thread t = new Thread(() -> {
                 while(true){
                     try {
-                        URL url = new URL("https://api.binance.com/api/v1/ticker/24hr?symbol=" + this.currentPair);
-                        JSONObject json = (JSONObject) new JSONParser().parse(IOUtils.toString(url, StandardCharsets.UTF_8));
+                        // Get request from binance api endpoint
+                        HttpRequest request = HttpRequest.newBuilder()
+                                .GET()
+                                .uri(URI.create("https://api.binance.com/api/v1/ticker/24hr?symbol=" + this.currentPair))
+                                .build();
+
+                        // Response
+                        HttpResponse<String> response = HttpClient.newHttpClient()
+                                .send(request, HttpResponse.BodyHandlers.ofString());
+
+                        JSONObject json = (JSONObject) new JSONParser().parse(response.body());
                         // Parse float to remove extra zeros.
                         priceChangeLabel.setText(validPairs.get(this.currentPair) + Float.parseFloat((String) json.get("priceChange")));
                         priceChangePercentLabel.setText(Float.parseFloat((String) json.get("priceChangePercent")) + "%");
                     }
-                    catch(IOException | ParseException e) {
+                    catch(IOException | ParseException | IllegalStateException | InterruptedException e) {
                         // If endpoint url malformed or no json.
                         priceChangeLabel.setText("Error");
                         priceChangePercentLabel.setText("Error");
