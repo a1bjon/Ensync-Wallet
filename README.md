@@ -13,3 +13,7 @@ in 1 application.
 ![Screenshot](screenshots//settings.png)
 <br>
 ![Screenshot](screenshots//settings_2.png)
+<br>
+![Screenshot](screenshots//settings_3.png)
+<br>
+![Screenshot](screenshots//incorrect_recovery.png)
